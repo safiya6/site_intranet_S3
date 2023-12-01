@@ -8,3 +8,7 @@ groupe:
 -> Bouazzaoui Soheib 
 -> Zidee Johann
 
+Cette branche permet aux membres de l'équipe de commit les pages PHP qui ont été codé dans le cadre de l'autoformation pour la SAE.
+Les pages sont sensé couvrir les quatre opérations de base pour la persistance des données (CRUD).
+
+ATTENTION: Tout les membres ne travaillent pas sur la meme BDD, il faudra donc importer le script adequat en fonction de la page à executer.
