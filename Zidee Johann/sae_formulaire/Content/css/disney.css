@@ -1,0 +1,122 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url("https://wallpapers.com/images/featured/disney-world-5axb9jxmckkfl87h.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #f82d42; /* Rouge Disney */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #d21c35; /* Rouge Disney foncé */
+}
+
+/* Menu de navigation */
+nav ul { 
+    margin:0;  
+    padding:0;
+}
+
+nav li {  
+    list-style-type : none; 
+    padding : 0px; 
+    margin-bottom : 10px; 
+}
+
+nav li a { 
+    display : block; 
+    margin : 0; 
+    background-color : #C9C9D9; 
+    border-radius : 10px; 
+    padding-top : 20px; 
+    padding-bottom : 20px; 
+    padding-left : 10px; 
+    padding-right : 10px; 
+    width:100%; 
+    vertical-align : middle; 
+    text-align : center; 
+    text-decoration : none; 
+    color : #686887; 
+    font-style : italic; 
+}
+
+
+nav{
+    grid-area: menu;
+}
+
+nav ul{
+
+display: flex;
+justify-content: center;
+
+}
+
+nav li { 
+    display: inline-block; 
+    margin: 2em;
+}
+
+.sansBordure { 
+    border : 0px; 
+    width : 30px; 
+    padding-left : 0px;
+}
+
+table { 
+    border-collapse : collapse; 
+    margin : auto; 
+}
+
+td,th { 
+    border : 1px solid black;  
+    width : 300px; 
+    height : 30px; 
+    text-align : center;
+}
+
+main {
+    background-color : #C9C9D9;
+    border-radius : 10px; 
+    padding : 30px; 
+    position: relative; 
+    grid-area: main;
+}
