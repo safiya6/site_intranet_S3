@@ -12,7 +12,7 @@ require_once "Models/Model.php";
 require_once "Controllers/Controller.php";
 
 //Liste des contrôleurs
-$controllers = ["home", "list", "set", "crud"];
+$controllers = ["crud"];
 //Nom du contrôleur par défaut
 $controller_default = "crud";
 
