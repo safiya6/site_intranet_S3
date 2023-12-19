@@ -1,6 +1,6 @@
 <?php 
-    $dsn = 'pgsql:host=localhost;dbname=training';
+    $dsn = 'pgsql:host=localhost;dbname=testAuto';
     $login = 'postgres';
-    $mdp = 'azerty';
+    $mdp = 'NK5u7H8pj!';
 
 ?>

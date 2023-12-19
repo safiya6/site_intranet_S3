@@ -28,12 +28,14 @@ initPhpSession();
         </div>
     </form>
 </figure>
+    <!--
     <div class="flexitems-center justify-center mt-10">
         <a href="?controller=connection&action=default">
         <button class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full mr-10">Se connecter</button>
 
         </a>
     </div>
+    -->
   <div class="flexitems-center justify-center mt-10">
   <a href="?controller=user&action=results">
         <button class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full mr-10">Voir tout les Sondages</button>
