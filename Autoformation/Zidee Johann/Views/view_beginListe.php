@@ -3,7 +3,7 @@
 	<head>
     	<meta charset="utf-8"/>
     	<title>Film Disney</title>
-    	<link rel="stylesheet" href="Content/css/disney.css"/>
+    	<link rel="stylesheet" href="Content/css/liste.css"/>
 	</head>
 	<body>
 		<nav>
@@ -14,5 +14,4 @@
 				<li><a href="?controller=D&action=default"> Suppression d'un Film</a></li>
 			</ul>
 		</nav>
-		
 

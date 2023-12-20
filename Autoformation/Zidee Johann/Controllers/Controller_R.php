@@ -1,6 +1,6 @@
 <?php
 
-class Controller_liste extends Controller {
+class Controller_R extends Controller {
 
 
     public function action_allFilms(){
@@ -8,6 +8,7 @@ class Controller_liste extends Controller {
         $m = Model::getModel();
         $d = ["liste" => $m->getFilms()];
         $this->render("liste", $d) ;
+
     }
 
     public function action_default(){
@@ -17,7 +18,5 @@ class Controller_liste extends Controller {
 
 
 }
-
-
 
 ?>

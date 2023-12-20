@@ -1,9 +1,6 @@
 <?php require "view_begin.php"?>
 
-        <form action="?controller=U&action=default" method='POST'>
-            
-            <label for="idFilm">Id du Film:</label>
-            <input type="number" name="idFilm" required>
+        <form action="?controller=C&action=default" method='POST'>
 
             <label for="titre">Titre du Film:</label>
             <input type="text" name="titre" required>
@@ -20,7 +17,7 @@
             <label for="realisateur">Réalisateur:</label>
             <input type="text" name="realisateur" required>
 
-            <input type="submit" value="Update du Film">
+            <input type="submit" value="Ajout du Film">
         </form>
 
 <?php require "view_end.php" ?>

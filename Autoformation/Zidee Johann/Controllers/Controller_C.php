@@ -3,12 +3,10 @@
 class Controller_C extends Controller {
 
     
-
-
     public function action_AjoutFilm(){
         $m = Model::getModel();
         $infos = [];
-        if(($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre']) && isset($_POST['genre']) && isset($_POST['duree']) && isset($_POST['anneeSortie']) && isset($_POST['realisateur']))){
+        if(($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['titre']) && isset($_POST['genre']) && isset($_POST['duree']) && isset($_POST['anneeSortie']) && isset($_POST['realisateur']))) {
             $titre = $_POST['titre'];
             $genre = $_POST['genre'];
             $duree = $_POST['duree'];
@@ -28,10 +26,9 @@ class Controller_C extends Controller {
 
         }
        
-        $this->render("informations",$infos) ;
+        $this->render("create",$infos) ;
     }
 
-    
     
     public function action_default(){
        
@@ -39,7 +36,5 @@ class Controller_C extends Controller {
     }
 
 }
-
-
 
 ?>

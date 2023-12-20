@@ -1,7 +1,6 @@
 <?php
 
-class Model
-{
+class Model {
     /**
      * Attribut contenant l'instance PDO
      */
@@ -43,45 +42,55 @@ class Model
 
     public function getAjoutFilm($infos)
     {
-    
-        
-        //Préparation de la requête
         $requete = $this->bd->prepare('INSERT INTO films (titre, genre, duree, anneeSortie, realisateur)VALUES (:titre, :genre, :duree, :anneeSortie, :realisateur)');
 
         //Remplacement des marqueurs de place par les valeurs
         $marqueurs = ['titre', 'genre', 'duree', 'anneeSortie', 'realisateur'];
+
         foreach ($marqueurs as $value) {
             $requete->bindValue(':' . $value, $infos[$value]);
         }
 
-        //Exécution de la requête
         $requete->execute();
-
         return (bool) $requete->rowCount();
     }
 
     public function getUpdateFilm($infos)
     {
         $requete = $this->bd->prepare('UPDATE films SET titre = :titre, genre = :genre, duree = :duree, anneeSortie = :anneeSortie, realisateur = :realisateur WHERE idFilm = :idFilm');
-
-        //Remplacement des marqueurs de place par les valeurs
         $marqueurs = ['idFilm', 'titre', 'genre', 'duree', 'anneeSortie', 'realisateur'];
 
         foreach ($marqueurs as $value) {
             $requete->bindValue(':' . $value, $infos[$value]);
         }
 
-        //Exécution de la requête
         $requete->execute();
-
         return (bool) $requete->rowCount();
     }
 
-    public function getDeleteFilm($id_np)
+    public function getDeleteFilm($id)
     {
         $requete = $this->bd->prepare("DELETE FROM films WHERE idFilm = :idFilm");
-        $requete->bindValue(':idFilm', (int) $id_np, PDO::PARAM_INT);
+        $requete->bindValue(':idFilm', (int) $id, PDO::PARAM_INT);
         $requete->execute();
         return (bool) $requete->rowCount();
     }
+
+    public function getIdExist($id) 
+    {
+        $requete = $this->bd->prepare('SELECT COUNT(*) FROM films WHERE idFilm = :idFilm');
+        $requete->bindValue(':idFilm', $id, PDO::PARAM_INT);
+        $requete->execute();
+        $count = $requete->fetchColumn();
+        return $count > 0;
+    }
+
+    public function getFilmById($id)
+    {
+        $requete = $this->bd->prepare('SELECT * FROM films WHERE idFilm = :idFilm');
+        $requete->bindValue(':idFilm', (int) $id, PDO::PARAM_INT);
+        $requete->execute();
+        return $requete->fetch(PDO::FETCH_ASSOC);
+    }
+
 }

@@ -1,8 +1,6 @@
 <?php
 
-
-abstract class Controller
-{
+abstract class Controller {
     /**
      * Constructeur. Lance l'action correspondante
      */

@@ -5,20 +5,17 @@ body {
     background: url("https://wallpapers.com/images/featured/disney-world-5axb9jxmckkfl87h.jpg") no-repeat center center fixed;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
 }
 
-form {
-    background-color: rgba(255, 255, 255, 0.8); /* Fond blanc semi-transparent */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
+nav {
+    grid-area: menu;
+    margin-bottom: 20px;
+}      
+      
 label {
     display: block;
     margin-bottom: 8px;
@@ -32,33 +29,30 @@ input {
     padding: 8px;
     margin-bottom: 16px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #111;
 }
 
 input[type="submit"] {
-    background-color: #d21c35;
     border: none;
-    color: #fff;
+    color: black;
     cursor: pointer;
-    padding: 10px;
-    font-size: 16px;
+    padding: 25px;
+    font-size: 20px;
 }
 
 input[type="submit"]:hover {
-    background-color: #d21c35;
+    background-color: white;
 }
 
-/* Menu de navigation */
 nav ul { 
-    margin:0;  
+    margin:10;  
     padding:0;
 }
 
 nav li {  
     list-style-type : none; 
     padding : 0px; 
-    margin-bottom : 10px; 
+    margin-bottom : 50px;
 }
 
 nav li a { 
@@ -67,7 +61,7 @@ nav li a {
     background-color : #C9C9D9; 
     border-radius : 10px; 
     padding-top : 20px; 
-    padding-bottom : 20px; 
+    padding-bottom : 35px; 
     padding-left : 10px; 
     padding-right : 10px; 
     width:100%; 
@@ -78,18 +72,11 @@ nav li a {
     font-style : italic; 
 }
 
-nav{
-    grid-area: menu;
-}
-
 nav ul{
-
-display: flex;
-justify-content: center;
-
+    display: flex;
 }
 
-nav li { 
+nav li {
     display: inline-block; 
     margin: 2em;
 }
@@ -100,7 +87,7 @@ nav li {
     padding-left : 0px;
 }
 
-table { 
+table {
     border-collapse : collapse; 
     margin : auto; 
 }

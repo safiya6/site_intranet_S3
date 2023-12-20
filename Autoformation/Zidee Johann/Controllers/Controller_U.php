@@ -3,12 +3,10 @@
 class Controller_U extends Controller {
 
     
-
-
-    public function action_UpdateFilm(){
+    public function action_updateFilm(){
         $m = Model::getModel();
         $infos = [];
-        if(($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idFilm']) && isset($_POST['titre']) && isset($_POST['genre']) && isset($_POST['duree']) && isset($_POST['anneeSortie']) && isset($_POST['realisateur']))){
+        if(($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idFilm']) && isset($_POST['titre']) && isset($_POST['genre']) && isset($_POST['duree']) && isset($_POST['anneeSortie']) && isset($_POST['realisateur']))) {
             $idFilm = $_POST['idFilm'];
             $titre = $_POST['titre'];
             $genre = $_POST['genre'];
@@ -27,21 +25,18 @@ class Controller_U extends Controller {
 
             $m->getUpdateFilm($infos);
 
-
         }
        
         $this->render("update",$infos) ;
+
     }
 
-    
     
     public function action_default(){
        
-        $this->action_UpdateFilm();
+        $this->action_updateFilm();
     }
 
 }
-
-
 
 ?>
