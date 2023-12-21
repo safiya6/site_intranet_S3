@@ -11,15 +11,13 @@
 
     <p>  <input type="submit" value="voir les données"/> </p>
 </form>
-<?php if (isset($_POST["id"]) and isset($_POST["titre"]) and isset($_POST["genre"]) 
-            and isset($_POST["duree"]) 
-            and isset($_POST["anneesortie"]) 
-            and isset($_POST["realisateur"])) :?>
+<?php if (isset($_POST["id"]) ):?>
 <table>
 <tr><th>titre</th><th>genre</th><th> année de sortie</th><th> réalisateur</th></tr>
 <tr><td><?= e($resultat['titre'])?></td><td><?= e($resultat['genre'])?> </td><td> <?= e($resultat['anneesortie']) ?> </td><td> <?= e($resultat['realisateur']) ?> </td></tr>
 </table>
 <?php endif ; ?>
+
 
 
 
