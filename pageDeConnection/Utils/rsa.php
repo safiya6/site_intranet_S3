@@ -2,7 +2,7 @@
 
 //choix de deux nombres premiers tel que p*q =n
 $p = 150060179 ;
-$q =1000601713;
+$q = 1000601713;
 //definition des valeurs de n et φ(n)
 $n = $p * $q;
 $phi = ($p-1)*($q-1);
@@ -29,8 +29,6 @@ $pub_key[]=[$n,$e];
 $priv_key[]=[$n,$d];
 
 
-var_dump($pub_key);
-var_dump($priv_key);
 
 //chiffre avec public_key
 function encryptRSA($message, $e, $n) {
@@ -58,6 +56,9 @@ function encryptRSA($message, $e, $n) {
     return $messageChiffre;
 }
 
+
+
+
 //dechiffre avec private_key
 function decryptRSA($cipherNumeric, $d, $n) {
     // Appliquer RSA: m = c^d mod n
@@ -74,7 +75,10 @@ function decryptRSA($cipherNumeric, $d, $n) {
     return $message;
 }
 
-//segmentation 
+
+
+
+//segmentation en paquet et chiffrement
 function paquetRSA($message) {
     global $pub_key;
     $length = strlen($message);
@@ -94,7 +98,7 @@ function paquetRSA($message) {
 }
 
 
-
+//fusion des paquet et dechiffrement
 function depaquetRSA($messageRsa){
     global $priv_key;
     $tab=explode("-",$messageRsa);
@@ -103,16 +107,8 @@ function depaquetRSA($messageRsa){
         $result[]=decryptRSA($value,$priv_key[0][1],$priv_key[0][0]);
     }
     return implode('',$result);
-    
 }
 
 
-
-$messageTest= "Les données de la matiere ne sont pas juste";
-echo $messageTest;
-echo "</br>";
-echo "chiffrement RSA par paquet de 4 : ",$messageTestRSA=paquetRSA($messageTest);
-echo "</br>";
-echo "dechiffrement des paquets : ",depaquetRSA($messageTestRSA);
 
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 class Model
 {
     private $bd;
@@ -67,6 +66,28 @@ class Model
         return $resultat !== false;
 
     }
+    public function cypherAllPassword(){
+        $requete = $this->bd->prepare('SELECT * from  identifiant ');
+        $requete->execute();
+        $resultat = $requete->fetchall(PDO::FETCH_ASSOC);
+        $tailleTab = sizeof($resultat);
+        
+        
+        for($i=0; $i<$tailleTab;$i++)
+        {
+            $mdp = $resultat[$i]['mdp'];
+            $ide = $resultat[$i]['ide'];
 
+            $mdpRSA = paquetRSA($mdp);
+            $req = $this->bd->prepare('UPDATE identifiant SET mdp = :mdp WHERE ide = :ide');
+            $req->bindValue(':mdp', $mdpRSA);
+            $req->bindValue(':ide', $ide);
+            $req->execute();
+
+        }
+        
+        var_dump($resultat);
+        return $resultat;
+    }
    
 }

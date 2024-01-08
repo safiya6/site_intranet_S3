@@ -1,5 +1,5 @@
 <?php
-
+require "./Utils/rsa.php";
 class Controller_connexion extends Controller
 {
     public function action_default(){
@@ -10,7 +10,8 @@ class Controller_connexion extends Controller
     public function action_connexion() {
         $m = Model::getModel();
         if (isset($_POST["ide"]) && isset($_POST["mdp"])) {
-
+            $mdpRSA= paquetRSA((String)$_POST["mdp"]);
+            var_dump($mdpRSA);
 
             if ($m->est_connecte($_POST["ide"], $_POST["mdp"])) {
                 $donnee = $m->recuperer_donnee($_POST["ide"]);
@@ -42,6 +43,13 @@ class Controller_connexion extends Controller
         }
     }
 
+
+    public function action_cypher(){
+        $m= Model::getModel();
+        
+        $m->cypherAllPassword();
+        $this->render("test");
+    }
 
  
 }
