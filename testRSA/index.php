@@ -28,8 +28,9 @@ $d = (int)gmp_invert($e,$phi);;
 $pub_key[]=[$n,$e];
 $priv_key[]=[$n,$d];
 
-
+echo "<strong> clé public : </strong>";
 var_dump($pub_key);
+echo "<strong> clé privé : </strong>";
 var_dump($priv_key);
 
 //chiffre avec public_key
@@ -109,10 +110,10 @@ function depaquetRSA($messageRsa){
 
 
 $messageTest= "Les données de la matiere ne sont pas juste";
-echo $messageTest;
+echo "<strong>le message a chiffrer est : </strong>",$messageTest;
 echo "</br>";
-echo "chiffrement RSA par paquet de 4 : ",$messageTestRSA=paquetRSA($messageTest);
+echo "<strong>message après chiffrement RSA par paquet de 4 :</strong> ",$messageTestRSA=paquetRSA($messageTest);
 echo "</br>";
-echo "dechiffrement des paquets : ",depaquetRSA($messageTestRSA);
+echo "<strong>dechiffrement des paquets par recurence : </strong>",depaquetRSA($messageTestRSA);
 
 ?>
