@@ -1,5 +1,18 @@
-<?php
 
+<?php
+//importation bdd et tests de chiffrement RSA sur table identifiant
+//credentials bdd
+$dsn = 'pgsql:host=localhost;dbname=sae';
+$login = 'postgres';
+$mdp = 'NK5u7H8pj!';
+$bd;
+$bd = new PDO($dsn, $login, $mdp);
+$bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$bd->query("SET nameS 'utf8'");
+?>
+
+
+<?php
 //choix de deux nombres premiers tel que p*q =n
 $p = 150060179 ;
 $q =1000601713;
@@ -75,6 +88,7 @@ function decryptRSA($cipherNumeric, $d, $n) {
     return $message;
 }
 
+
 //segmentation 
 function paquetRSA($message) {
     global $pub_key;
@@ -109,6 +123,63 @@ function depaquetRSA($messageRsa){
 
 
 
+
+
+$requete = $bd->prepare('SELECT * FROM identifiant');
+$requete -> execute();
+$tab = $requete->fetchall();
+
+function chiffrerToutMdp(){
+	global $tab;
+    $dsn = 'pgsql:host=localhost;dbname=sae';
+    $login = 'postgres';
+    $mdp = 'NK5u7H8pj!';
+    $bd;
+   $bd = new PDO($dsn, $login, $mdp);
+   $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   $bd->query("SET nameS 'utf8'");
+    foreach($tab as $row){
+		$id = $row[0];
+		$mdp = $row[1];
+		$mdpRSA=paquetRSA($mdp);
+		$req=$bd->prepare("UPDATE identifiant SET mdp='".$mdpRSA."' WHERE ide='".$id."'");
+	
+		$req->execute();
+	}
+}
+
+function dechiffrerToutMdp(){
+	global $tab;
+    $dsn = 'pgsql:host=localhost;dbname=sae';
+    $login = 'postgres';
+    $mdp = 'NK5u7H8pj!';
+    $bd;
+   $bd = new PDO($dsn, $login, $mdp);
+   $bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   $bd->query("SET nameS 'utf8'");
+    foreach($tab as $row){
+		$id = $row[0];
+		$mdp = $row[1];
+		$mdpRSA=depaquetRSA($mdp);
+		$req=$bd->prepare("UPDATE identifiant SET mdp='".$mdpRSA."' WHERE ide='".$id."'");
+	
+		$req->execute();
+	}
+}
+
+
+
+//ATTENTION DANGER DANGER DANGER NE PAS EXECUTER LA FONCTION SI LA BASE EST DEJA CHIFFRE
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'chiffrer') {
+    // Appeler votre fonction ici
+    chiffrerToutMdp();
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'dechiffrer') {
+    // Appeler votre fonction ici
+    dechiffrerToutMdp();
+}
+
+
 $messageTest= "Les données de la matiere ne sont pas juste";
 echo "<strong>le message a chiffrer est : </strong>",$messageTest;
 echo "</br>";
@@ -117,3 +188,13 @@ echo "</br>";
 echo "<strong>dechiffrement des paquets par recurence : </strong>",depaquetRSA($messageTestRSA);
 
 ?>
+
+<form action="RSAmaths.php" method="post">
+    <input type="hidden" name="action" value="chiffrer">
+    <input type="submit" value="chiffrer ">
+</form>
+
+<form action="RSAmaths.php" method="post">
+    <input type="hidden" name="action" value="dechiffrer">
+    <input type="submit" value="dechiffrer ">
+</form>
