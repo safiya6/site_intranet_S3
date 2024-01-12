@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 
 // Pour avoir le nombre de résultats par page
 require_once "Utils/constant.php";
@@ -12,7 +12,7 @@ require_once "Models/Model.php";
 require_once "Controllers/Controller.php";
 
 //Liste des contrôleurs
-$controllers = ["connexion"];
+$controllers = ["connexion","page"];
 //Nom du contrôleur par défaut
 $controller_default = "connexion";
 
