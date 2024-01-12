@@ -1,5 +1,9 @@
 <?php require "view_begin.php" ?>
 
+<?php if (isset($error_message) && !empty($error_message)): ?>
+        <p style="color: red;"><?php echo $error_message; ?></p>
+    <?php endif; ?>
+
 <div id="pagelogin">
             <p><img id="imgIutv" src="Content/iutv.jpg"></p>
             <div id="login">

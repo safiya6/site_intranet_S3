@@ -38,7 +38,7 @@ class Model
     }
     public function est_enseignant($id)
     {
-        $requete = $this->bd->prepare('SELECT * from enseignant where enseignant.id_personne = ');
+        $requete = $this->bd->prepare('SELECT * from enseignant where enseignant.id_personne = :id');
         $requete->bindValue(':id', $id);
         $requete->execute();
 
@@ -57,6 +57,14 @@ class Model
         return $resultat !== false;
 
     }
+    public function est_chefdepartement($id){
+        $requete = $this->bd->prepare('SELECT * from  departement where departement.id_personne = :id ');
+        $requete->bindValue(':id', $id);
+        $requete->execute();
+
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+        return $resultat !== false;
+    } 
     public function est_directeur($id)
     {
         $requete = $this->bd->prepare('SELECT * from  directeur where directeur.id_personne = :id ');
@@ -65,8 +73,30 @@ class Model
 
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
         return $resultat !== false;
-
+        
     }
+
+
+ 
+    public function getQuotite($id)
+{ 
+    $requete = $this->bd->prepare('SELECT quotite, sigleDept FROM assigner JOIN departement ON departement.id_departement = assigner.id_departement WHERE assigner.id_personne = :id;');
+    $requete->bindValue(':id', $id);
+    $requete->execute();
+    $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+    $quotites = [];
+    foreach ($resultat as $values) {
+        // Création d'un tableau associatif avec les clés 'quotite' et 'dept'
+        $quotites[] = [
+            'label' => $values['sigledept'],
+            'data' => (float)$values['quotite']
+        ];
+    }
+  
+    return $quotites;
+}
+
 
    
 }
