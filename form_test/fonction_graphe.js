@@ -27,7 +27,8 @@ function graphiqueDoughnut(Id, json , titre) {
        responsive: true, 
    }
    });} 
-function graphiqueCamenbert(Id,json){
+
+   function graphiqueCamenbert(Id,json){
     var jsonData = json;
 
         var labels = jsonData.map(function(item) { return item.label; });
@@ -41,13 +42,114 @@ function graphiqueCamenbert(Id,json){
                 labels: labels,
                 datasets: [{
                     data: percentages,
-                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8A2BE2'], // You can customize the colors
+                    backgroundColor: ['#FF6384', '#36A2EB', '#008000', '#FF00FF','#FFA500','#FF0000','#0000FF','#00FF00','#FFFF00'], // You can customize the colors
                 }],
             },
         });
      
 }
+function graphiqueBar(Id, json,label1,label2) {
+    var jsonData = json;
 
-  
-  
-        
+    var labels = jsonData.map(function(item) {
+        return item.label;
+    });
+
+    var totalServStatutaire = jsonData.map(function(item) {
+        return item.data1;
+    });
+
+    var totalServComplementaire = jsonData.map(function(item) {
+        return item.data2;
+    });
+
+    var ctx = document.getElementById(Id).getContext('2d');
+
+    var barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: label1,
+                data: totalServStatutaire,
+                backgroundColor: 'rgba(75, 192, 192, 0.8)', // Vous pouvez personnaliser la couleur
+            }, {
+                label: label2,
+                data: totalServComplementaire,
+                backgroundColor: 'rgba(255, 99, 132, 0.8)', // Vous pouvez personnaliser la couleur
+            }],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    stacked: true,
+                },
+            },
+        },
+    });
+}
+
+
+
+
+    
+// Fonction pour générer des couleurs aléatoires
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+
+
+function graphiqueBarresHorizontales(Id, json) {
+    var jsonData = json;
+
+    // Extraire les disciplines et les départements uniques
+    var disciplines = [...new Set(jsonData.map(item => item.label))];
+    var departements = [...new Set(jsonData.map(item => item.data2))];
+
+    // Préparer les ensembles de données
+    var datasets = [];
+    departements.forEach((dept, index) => {
+        datasets.push({
+            label: dept,
+            data: disciplines.map(disc => {
+                var item = jsonData.find(item => item.label === disc && item.data2 === dept);
+                return item ? item.data1 : 0;
+            }),
+            backgroundColor: getRandomColor(index) // Utilisez une fonction pour obtenir une couleur différente pour chaque département
+        });
+    });
+
+    // Configuration du graphique
+    var ctx = document.getElementById(Id).getContext('2d');
+    var barChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: disciplines,
+            datasets: datasets
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: true, // Empiler les barres sur l'axe X
+                    beginAtZero: true
+                },
+                y: {
+                    stacked: true  // Empiler les barres sur l'axe Y
+                }
+            }
+        }
+    });}
+
+

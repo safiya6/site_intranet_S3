@@ -17,7 +17,7 @@ class Controller_connexion extends Controller
         } 
         
         // Si le formulaire est soumis
-        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["ide"]) && isset($_POST["mdp"])) {
+        if (/*$_SERVER["REQUEST_METHOD"] === "POST" &&*/ isset($_POST["ide"]) && isset($_POST["mdp"])) {
             
             
             if ($m->est_connecte($_POST["ide"], $_POST["mdp"])) {
@@ -25,9 +25,11 @@ class Controller_connexion extends Controller
                 $_SESSION["ide"] = (int)$_POST["ide"];
                  
                 $_SESSION["prenom"] = $donnee["prenom"];
+                $_SESSION["semestre"] = 1;
+                $_SESSION["niveau"]=1; 
 
                 if ($m->est_secretaire($_POST["ide"])) {
-                    $_SESSION["role"] = "secrétaire";
+                    $_SESSION["role"] = "secretaire";
                     header('Location: ?controller=page&action=secretaire');
                     exit();
 
@@ -35,10 +37,15 @@ class Controller_connexion extends Controller
                     $_SESSION["role"] = "directeur";
                     header('Location: ?controller=page&action=directeur');
                     exit(); 
-                }  elseif ($m->est_chefdepartement($_POST["ide"])) {
+                }  elseif ($m->est_equipedirection($_POST["ide"])) {
+                    $_SESSION["role"] = "equipedirection";
+                    header('Location: ?controller=page&action=directeur');
+                    exit(); 
+                } 
+                 elseif ($m->est_chefdepartement($_POST["ide"])) {
                     $_SESSION["role"] = "chef de departement";
                    
-                    header('Location: ?controller=page&action=chefDept');
+                    header('Location: ?controller=page&action=chefDept ');
                     exit();
                     
                 }else {

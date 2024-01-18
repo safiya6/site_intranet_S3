@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #293358;
+    font-family: 'Montserrat', sans-serif;
+}
+.graph-container-parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    padding: 50px; /* Réduction de la marge */
+    background-color: #293358;
+}
+.graph-container {
+    background-color: #4F5F89;
+    border-radius: 15px;
+    padding: 50px; /* Réduction de la taille des graphiques */
+    color: rgb(255, 255, 255);
+    margin: 5px; /* Réduction de la marge entre les boîtes */
+}
+
+h1 {
+    text-align: center;
+}
+
+
+label {
+display: block;
+margin-bottom: 10px;
+}
+
+input[type="radio"] {
+margin-right: 5px;
+}
+
+input[type="submit"] {
+background-color: #3498db;
+color: #fff;
+padding: 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+background-color: #2980b9;
+}
+
+
+.logo-container {
+display: flex;
+align-items: center;
+}
+
+#logo {
+width: 200px;
+}
+
+#title {
+color: white;
+font-size: 1.5em;
+
+}
+
+header {
+background-color: #4F5F89;
+padding: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.navigation {
+width : 100%;
+display: flex;
+align-items: center;
+}
+
+#links {
+display: flex;
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+
+.link {
+margin-right: 15px;
+}
+
+.link a {
+text-decoration: none;
+color: white;
+font-weight: bold;
+}
+button #ajout{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+} 
+
+#connexionButton,
+#modeSwitch, #ajout   {
+background-color: #fff;
+color: #3498db;
+padding: 8px 12px;
+border: none;
+cursor: pointer;
+font-weight: bold;
+margin-left: 10px;
+}
+
+
+.canva {
+    display: block;
+    width: auto !important;
+    height: auto !important;
+}
+
+h2 {
+text-align: center;
+}
+
+ 
+
+input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #444;
+}
+
+
+  header .button_slide {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+  button{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  button:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;  
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+
+  button:hover{
+    padding-right: 4px;
+    padding-left:8px;
+  }
+  
+  button:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+  header button {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+
+
+
+.form {
+    width: 100%;
+    background-color: rgb(70, 63, 63);
+    color :rgb(214, 184, 184) ;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ffa500;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+.form label {
+  display: inline-block;
+  margin-right: 40px; /* Add some space between the label and the radio button */
+}
+#form label, #form input,#form select {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+#form {
+  background-color: #4F5F89;
+  width: 30%;
+  padding : 25px ;
+  margin-top: 30px;
+  margin-left:34%;
+}
