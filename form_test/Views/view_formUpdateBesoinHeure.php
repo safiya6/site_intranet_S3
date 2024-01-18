@@ -41,11 +41,13 @@
     </select>
 
     <label for="id_departement"> Département : </label>
-    <select name="id_departement" id="id_departement">
+    <select name="id_departement" id="id_departement">  
          <?php foreach ($departements as $departement): ?>
+            <?php if ($departement['id_departement'] != 0): ?>
             <option value="<?php echo $departement['id_departement']; ?>">
                 <?php echo $departement['libelledept']; ?>
             </option>
+            <?php endif; ?>
         <?php endforeach; ?>
     </select>
 
