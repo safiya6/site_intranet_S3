@@ -31,7 +31,7 @@ class Controller_page extends Controller
         $_SESSION["departement"]= $m->get_departementSecretaire($_SESSION["ide"]);
         $this->action_utilisateur();
         $_SESSION["enseigneDept"] = json_encode($m->getEnseignantparDept($_SESSION["departement"]));
-        $_SESSION["HeurediscIUTDept"] = json_encode($m->getHeurediscIUTDept($_SESSION["departement"],$_SESSION["semestre"]));
+        $_SESSION["HeurediscIUTDept"] = json_encode($m->getHeurediscIUTDept($_SESSION["departement"],$_SESSION["semestre"],$_SESSION["niveau"]));
         $this-> render("page_identifiant");
     }
 
@@ -42,7 +42,7 @@ class Controller_page extends Controller
         $m = Model::getModel();
         $_SESSION["departement"] = $m->recup_departement($_SESSION["ide"]);
         $_SESSION["enseigneDept"] = json_encode($m->getEnseignantparDept($_SESSION["departement"]));
-        $_SESSION["HeurediscIUTDept"] = json_encode($m->getHeurediscIUTDept($_SESSION["departement"],$_SESSION["semestre"]));
+        $_SESSION["HeurediscIUTDept"] = json_encode($m->getHeurediscIUTDept($_SESSION["departement"],$_SESSION["semestre"],$_SESSION["niveau"]));
         $this->action_enseignant(); 
         $this-> render("page_identifiant");
      
