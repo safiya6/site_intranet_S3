@@ -356,12 +356,9 @@ GROUP BY
 } 
 public function getHeurediscIUTDept($id,$s,$n){
     $requete =  $this->bd->prepare('SELECT 
-    e.AA AS Annee,
-    e.S AS Semestre,
-    d.libelleDisc AS Discipline, 
-    dept.sigleDept AS Departement,
-    f.nom AS Formation,
-    SUM(e.nbHeureEns) AS TotalHeures
+    d.libelleDisc AS datay, 
+    dept.sigleDept AS label,
+    SUM(e.nbHeureEns) AS datax
 FROM 
     enseigne e
 JOIN 
@@ -373,7 +370,8 @@ JOIN
 JOIN
     formation f ON e.id_formation = f.id_formation
 WHERE
-    f.id_niveau = 2
+    f.id_niveau = :n and e.S = :s and dept.sigleDept = :id
+    
 GROUP BY
     e.AA,
     e.S,
@@ -386,10 +384,12 @@ GROUP BY
    ');
     $requete->bindValue(':id', $id);
     $requete->bindValue(':s', $s);
+    $requete->bindValue(':n', $n);
     $requete->execute();
     $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
     return $resultat;
 }
+
 public function getEnseignantparDept($id){
     $requete =  $this->bd->prepare('SELECT
     c.siglecat AS label,
