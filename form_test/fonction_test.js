@@ -237,7 +237,7 @@ function graphiqueBarresHorizontales(Id, json, titre) {
                     var item = jsonData.find(item => item.datay === disc && item.label === dept);
                     return item ? item.datax : 0;
                 }),
-                backgroundColor: getRandomColor(index) // Utilisez une fonction pour obtenir une couleur différente pour chaque département
+                backgroundColor: getColor(index) // Utilisez une fonction pour obtenir une couleur différente pour chaque département
             });
         });
 
@@ -278,9 +278,17 @@ function graphiqueBarresHorizontales(Id, json, titre) {
     }
 }
 
-        function getRandomColor(index) {
+        function getColor(index) {
             // Fonction pour générer des couleurs ; ajustez selon vos besoins
-            var colors = ['red', 'blue', 'green', 'purple', 'orange'];
+            var colors = ["#FF0000", // Rouge
+    "#00FF00", // Vert
+    "#0000FF", // Bleu
+    "#FFFF00", // Jaune
+    "#FF00FF", // Magenta
+    "#00FFFF", // Cyan
+    "#800080", // Violet
+    "#FFA500", // Orange
+    "#008000",];
             return colors[index % colors.length];
         }        
     
