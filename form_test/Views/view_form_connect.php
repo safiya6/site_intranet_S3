@@ -12,7 +12,7 @@
                     <form id="form" action="" method="post">
                         <p>
                             <img class="imgInput" src="Content/personne.svg">
-                            <input type="number" name="ide" placeholder="Identifiant">
+                            <input style" -moz-appearance:textfield" type="number" name="ide" placeholder="Identifiant">
                         </p>
                         <?php if (isset($error_message) && !empty($error_message)): ?>
                            <p style="color: red;"><?php echo $error_message; ?></p>
