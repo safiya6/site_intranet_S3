@@ -1,4 +1,7 @@
 <?php
+require_once "./Utils/RSAmodule.php";
+
+require_once "./Utils/keys.php";
 
 class Model
 {
@@ -21,6 +24,77 @@ class Model
         }
         return self::$instance;
     }
+
+    //soheib et tom #RSA
+    public function recuperer_id(){
+    $requete = $this->bd->prepare('SELECT * FROM identifiant');
+    $requete -> execute();
+    return $requete->fetchall();
+    }
+
+    function chiffrerToutMdp($taille,$tab,$pubKey){
+        if($taille!=344){
+            foreach($tab as $row){
+                $id = $row[0];
+                $mdp = $row[1];
+                $mdpRSA=encryptRSA($mdp,$pubKey);
+                $req=$this->bd->prepare("UPDATE identifiant SET mdp='".$mdpRSA."' WHERE ide='".$id."'");
+                
+                $req->execute();
+            }
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    function dechiffrerToutMdp($taille,$tab,$privKey){
+        if($taille==344){
+          
+            foreach($tab as $row){
+                $id = $row[0];
+                $mdp = $row[1];
+                $mdpRSA=decryptRSA($mdp,$privKey);
+                $req= $this->bd->prepare("UPDATE identifiant SET mdp='".$mdpRSA."' WHERE ide='".$id."'");
+                $req->execute();
+            }
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+
+    function isChiffre(){
+        $requete = $this->bd->prepare('SELECT * FROM identifiant');
+        $requete -> execute();
+        $tab = $requete->fetchall();
+    
+        foreach($tab as $row){
+            $id = $row[0];
+            $mdp = $row[1];
+            $nb344=0;
+            $nbTot=0;
+            if(strlen($mdp) == 344){
+                $nb344++;
+                $nbTot++;
+            }
+            else{
+                $nbTot++;
+            }
+        }
+        if($nb344==$nbTot){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+         
+    }
+
+
+
     public function getDisciplines() {
         $requete = $this->bd->prepare('SELECT * FROM discipline');
         $requete->execute();
@@ -122,13 +196,18 @@ class Model
         return $requete->fetch(PDO::FETCH_ASSOC);
     }
     public function est_connecte($id, $mdp) {
-        $requete = $this->bd->prepare('SELECT * from identifiant where ide = :id and mdp = :mdp');
+        $privKey = PRIVATE_KEY;
+
+        $requete = $this->bd->prepare('SELECT mdp from identifiant where ide = :id ');
         $requete->bindValue(':id', $id);
-        $requete->bindValue(':mdp', $mdp);
         $requete->execute();
-    
-        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
-        return $resultat !== false;
+        $data = $requete->fetch(PDO::FETCH_ASSOC);
+        var_dump($data);
+        $mdpRSADechiffre =decryptRSA($data["mdp"], $privKey);
+        var_dump($mdpRSADechiffre);
+
+        if($mdpRSADechiffre==$mdp){return True;}
+        else{return False;}
     }
     public function est_enseignant($id)
     {

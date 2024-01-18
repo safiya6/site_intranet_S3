@@ -18,17 +18,16 @@ class Controller_delete extends Controller {
 
             // Supprimer l'enseignant
             $deleteEnseignant = $m->deleteEnseignantEtPersonne($infos);
-            var_dump($deleteEnseignant);
             if ($deleteEnseignant != false) {
                 $data = [
-                    'title' => "Réussi",
-                    'message' => "La suppression a été réalisée avec succès !",
+                    'title' => "Rï¿½ussi",
+                    'message' => "La suppression a ï¿½tï¿½ rï¿½alisï¿½e avec succï¿½s !",
                 ];
                 $this->render('message', $data);
             } else {
                 $data = [
                     'title' => "Echec",
-                    'message' => "Aucune entrée correspondante trouvée pour la suppression.",
+                    'message' => "Aucune entrï¿½e correspondante trouvï¿½e pour la suppression.",
                 ];
                 $this->render('message', $data);
             }

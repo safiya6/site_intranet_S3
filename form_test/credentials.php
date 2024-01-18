@@ -1,5 +1,5 @@
 <?php
-$dsn = 'pgsql:host=localhost;dbname=dbsafiya';
-$login = 'safiya';
-$mdp = 'safiya';
+$dsn = 'pgsql:host=localhost;dbname=sae';
+$login = 'postgres';
+$mdp = 'NK5u7H8pj!';
 ?>

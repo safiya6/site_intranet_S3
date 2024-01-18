@@ -154,15 +154,7 @@ input[type="submit"] {
   }
   
 
-  button:hover{
-    padding-right: 4px;
-    padding-left:8px;
-  }
-  
-  button:hover:after {
-    opacity: 1;
-    right: 10px;
-  }
+
   header button {
     margin-left: auto;
     margin-right: auto;
