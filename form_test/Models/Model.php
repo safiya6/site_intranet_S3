@@ -202,10 +202,14 @@ class Model
         $requete->bindValue(':id', $id);
         $requete->execute();
         $data = $requete->fetch(PDO::FETCH_ASSOC);
-        var_dump($data);
-        $mdpRSADechiffre =decryptRSA($data["mdp"], $privKey);
-        var_dump($mdpRSADechiffre);
-
+         // Vérifier si la requête a renvoyé un résultat
+         if ($data !== false) {
+        $mdpRSADechiffre = decryptRSA($data["mdp"], $privKey);
+        return $mdpRSADechiffre == $mdp;
+    } else {
+        // Aucun enregistrement trouvé pour l'ID fourni
+        return false;
+    }
         if($mdpRSADechiffre==$mdp){return True;}
         else{return False;}
     }
