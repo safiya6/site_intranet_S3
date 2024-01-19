@@ -10,7 +10,8 @@ class Model
     private static $instance = null;
 
     private function __construct()
-    {
+    {        
+        // Connexion à la base de données lors de l'instanciation du modèle
         include "credentials.php";
         $this->bd = new PDO($dsn, $login, $mdp);
         $this->bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -19,6 +20,7 @@ class Model
 
     public static function getModel()
     {
+        // Singleton : assure qu'une seule instance du modèle existe
         if (self::$instance === null) {
             self::$instance = new self();
         }
@@ -34,7 +36,7 @@ class Model
     $requete -> execute();
     return $requete->fetchall();
     }
-
+    // Fonction pour chiffrer les mots de passe de la base de données
     function chiffrerToutMdp($taille,$tab,$pubKey){
         //permet de chiffrer toute la bdd, la taille correspond a une valeur qui est retourné par une autre fonction qui verifie si la bdd est chiffré, en l'occurence le script renvoie 344 si la bdd est chiffrée 0 sinon. Ici, ca nous sert a eviter de chiffrer une bdd deja chiffrée
 
@@ -74,7 +76,7 @@ class Model
             return 0;
         }
     }
-
+    // Fonction pour vérifier si la base de données est chiffrée
     function isChiffre(){
         $requete = $this->bd->prepare('SELECT * FROM identifiant');
         $requete -> execute();
@@ -103,7 +105,7 @@ class Model
     }
 
 
-
+    // Fonctions pour récupérer différentes données de la base de données
     public function getDisciplines() {
         $requete = $this->bd->prepare('SELECT * FROM discipline');
         $requete->execute();
@@ -149,7 +151,7 @@ class Model
         $requete->execute();
         return (bool) $requete->rowCount(); 
     }
-
+    // Fonction pour trouver l ID d'une personne à partir de ses informations
     public function findIdPersonne($infos) {
         $requete = $this->bd->prepare('SELECT id_personne FROM personne WHERE nom = :nom AND prenom = :prenom AND email = :email');
         $marqueurs = ['nom', 'prenom', 'email'];
@@ -449,7 +451,7 @@ public function getPersonnes() {
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    // Fonction pour supprimer un enseignant et sa personne associée de la base de données
     public function deleteEnseignantEtPersonne($infos) {
 
         $id_personne = $this->findByIdPersonne($infos);
