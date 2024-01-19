@@ -1,0 +1,45 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('chemin_vers_image_disney.jpg'); /* Remplacez avec le chemin de votre image */
+    background-size: cover;
+}
+body {
+    background-color: pink; 
+  
+}
+
+/* Vos autres règles CSS... */
+
+form {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #5c6bc0;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #3f51b5;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+}
