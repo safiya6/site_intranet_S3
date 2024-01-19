@@ -103,25 +103,7 @@ class Controller_page extends Controller
         } else {
             $this->action_directeur();
         } 
-    } 
+    }
+} 
 
-    // Commenté pour l'instant
-    /*public function action_rendre(){
-        if ($_SESSION["role"] == "secrétaire"){
-            $this->action_secretaire();
-            $this->render("secretaire");
-        } elseif ($_SESSION["role"] == "enseignant"){
-            $this->action_enseignant();
-            $this->render('enseignant');
-        } elseif ($_SESSION["role"] == "directeur" ){
-            $this->action_directeur();
-            $this->render("directeur");
-        } elseif ($_SESSION["role"] == "chef de departement"){
-            $this->action_chefDept();
-            $this->render("chefdept");
-        } 
-    } */
-
-    /**public function action_donneEnseignant() {
-        session_start();
-        $m = Model::getModel
+   
