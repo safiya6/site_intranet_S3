@@ -1,5 +1,9 @@
-
 Repository GitLab appartenant à l'équipe HKMT du groupe Topaze pour la SAE S3.01.
+
+
+Liens pour le rendu de la SAE (seulement depuis l'IUT): http://pedagoweb/~12200893/
+
+
 
 groupe:
 -> Boutajar Houssna
