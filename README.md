@@ -42,14 +42,14 @@ le repertoire applicationWeb contient tout le code de la version finale du proje
 - enseignant: (1010103 / mdp321)
 
 
-## Tester la page
+## Tester la page depuis l'IUT
 
-DEPUIS L'IUT
+
 ```bash
 http://pedagoweb/~12200893/
 ```
 
-MANUELLEMENT (déconseillé)
+## Tester la page depuis l'IUT manuellement (déconseillé)
 
 ```bash
   git clone https://gitlab.sorbonne-paris-nord.fr/12200893/app-web-hkmt.git
