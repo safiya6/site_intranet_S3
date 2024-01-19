@@ -22,7 +22,7 @@ class Controller_RSA extends Controller
             $taille = verifMdp($tab);
             $resultat = $m->chiffrerToutMdp($taille, $tab, $pubKey);
             $etat = $m->isChiffre();
-
+            //variable utilisé a des fins de debug dans une page spécial permettant de chiffrer/dechiffrer toute la bdd
             if ($resultat === 1) {
                 $bdd = "succes";
             } else {
@@ -42,7 +42,7 @@ class Controller_RSA extends Controller
     // Action pour déchiffrer les données en base de données
     public function action_dechiffrerBDD(){
         global $privKey;
-        // Initialisation des variables d'état
+        // Initialisation des variables de facons a toujours retourner quelque chose meme en cas d'Erreur
         $etat = 0;
         $bdd = 0;
 
@@ -75,7 +75,7 @@ class Controller_RSA extends Controller
 
     // Action par défaut
     public function action_default() {
-        // Rendu de la vue par défaut
+        // cet action ne fait que diriger vers la vue RSA sans rien faire, l'utilisateur fait son choix sur cette derniere
         $this->render("RSA");
     }
 }

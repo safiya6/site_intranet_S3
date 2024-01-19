@@ -1,4 +1,7 @@
 <?php
+
+//utilité du if(!defined): ne pas redefinir une paire de clé non existante&
+
 if (!defined('PRIVATE_KEY')){
 define('PRIVATE_KEY', '-----BEGIN PRIVATE KEY-----
 MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDjpfuMoo9DBkuj

@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "clées généré";
     }
     else{
-        echo "deja fait, pour des raisons de sécurité, vous ne pouvez pas regenerer des clées ";
+        echo "deja fait, vous ne pouvez pas regenerer des clées ";
     }
 }
 ?>

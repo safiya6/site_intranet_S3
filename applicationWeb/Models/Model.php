@@ -26,15 +26,21 @@ class Model
     }
 
     //soheib et tom #RSA
+
+
     public function recuperer_id(){
+    //permettra de chiffrer les mdp de chaque personne dans la bdd plus bas dans le code
     $requete = $this->bd->prepare('SELECT * FROM identifiant');
     $requete -> execute();
     return $requete->fetchall();
     }
 
     function chiffrerToutMdp($taille,$tab,$pubKey){
+        //permet de chiffrer toute la bdd, la taille correspond a une valeur qui est retourné par une autre fonction qui verifie si la bdd est chiffré, en l'occurence le script renvoie 344 si la bdd est chiffrée 0 sinon. Ici, ca nous sert a eviter de chiffrer une bdd deja chiffrée
+
         if($taille!=344){
             foreach($tab as $row){
+                //on chiffre chacun des mdp de la bdd avant de les renvoyer en utilisant $tab qui fait reference a la fonction recuperer_id() defini plus haut ainsi que la clé publique qui se situe dans ./Utils/keys.php
                 $id = $row[0];
                 $mdp = $row[1];
                 $mdpRSA=encryptRSA($mdp,$pubKey);
@@ -50,9 +56,12 @@ class Model
     }
 
     function dechiffrerToutMdp($taille,$tab,$privKey){
+       
+       //meme utilitée que dans la fonction chiffrerToutMdp(), si le script retourne 344, la bdd est chiffré dnc on dechiffre
         if($taille==344){
           
             foreach($tab as $row){
+                //meme procédé que dans chiffrerToutMdp() 
                 $id = $row[0];
                 $mdp = $row[1];
                 $mdpRSA=decryptRSA($mdp,$privKey);
@@ -70,7 +79,7 @@ class Model
         $requete = $this->bd->prepare('SELECT * FROM identifiant');
         $requete -> execute();
         $tab = $requete->fetchall();
-    
+        //on regarde toute les lignes de la table identifiant, si la longueur du mdp est de 344 il est chiffré, c'est dut au fait que les messages sont passé dans le chiffrement RSA d'openSSL puis convertit en b64 avant d'etre stocké. Il faut regarder le script genKeys pour comprendre
         foreach($tab as $row){
             $id = $row[0];
             $mdp = $row[1];
