@@ -2,6 +2,7 @@
 
 class Controller_update extends Controller {
 
+    // Action pour afficher le formulaire de mise à jour du besoin en heure avec les données nécessaires
     public function action_formUpdateBesoinHeure() {
         $m = Model::getModel();
         $data = [
@@ -15,6 +16,7 @@ class Controller_update extends Controller {
         $this->render("formUpdateBesoinHeure", $data);        
     }
 
+    // Action pour choisir le besoin en heure à mettre à jour
     public function action_choiceUpdateBesoinHeure() {
         $infos = [
             "aa"             => $_POST["aa"],
@@ -32,13 +34,15 @@ class Controller_update extends Controller {
         else {
             $data = [
                 'title' => "Echec",
-                'message' => "Le besoin en heure n'existe pas, merci de le creer",
+                'message' => "Le besoin en heure n'existe pas, merci de le créer",
             ];
             $this->render('message', $data);
         }
     }
 
+    // Action pour effectuer la mise à jour du besoin en heure
     public function action_updateBesoinHeure() {
+        // Vérification de la présence et de la validité des données POST
         if (isset($_POST['besoin_heure']) and ! preg_match("/^ *$/", $_POST["besoin_heure"])) {
             $infos = [
                 "besoin_heure"   => $_POST["besoin_heure"],
@@ -50,7 +54,8 @@ class Controller_update extends Controller {
             ];
             $m = Model::getModel();
             $update = $m->updateBesoinHeure($infos);
-            if($update) {
+            // Affichage du message de réussite ou d'échec en fonction du résultat de la mise à jour
+            if ($update) {
                 $data = [
                     'title' => "Réussi",
                     'message' => "Le besoin en heure a été changé avec succès !",
@@ -60,18 +65,18 @@ class Controller_update extends Controller {
             else {
                 $data = [
                     'title' => "Echec",
-                    'message' => "Le changement de besoin en heure n'a pas pu être effectué, réésayez !",
+                    'message' => "Le changement de besoin en heure n'a pas pu être effectué, réessayez !",
                 ];
                 $this->render('message', $data);
             }
         }
 
         else {
-            $this->action_error('Le nouveau besoin en heure n\'a pas été compris, réésayez !');
+            $this->action_error('Le nouveau besoin en heure n\'a pas été compris, réessayez !');
         }
-
     }
 
+    // Action par défaut, redirige vers le formulaire de mise à jour du besoin en heure
     public function action_default() {
         $this->action_formUpdateBesoinHeure();
     }
