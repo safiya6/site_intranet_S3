@@ -3,6 +3,13 @@ Repository GitLab appartenant à l'équipe HKMT du groupe Topaze pour la SAE S3.
 
 Liens pour le rendu de la SAE (seulement depuis l'IUT): http://pedagoweb/~12200893/
 
+liste d'exemples de couples login/mdp donnant accès à différentes pages:
+
+directeur : 1010100 mdp123
+secrétaire : 1010102 mdp789
+chef de departement : 1010115 mdp159
+équipe de direction : 1010106 mdp147
+enseignant: 1010103 mdp321
 
 
 groupe:
