@@ -6,8 +6,6 @@ $privKey = PRIVATE_KEY;
 $pubKey = PUBLIC_KEY;
 class Controller_RSA extends Controller
 {
-    
-    
     public function action_chiffrerBDD(){
         global $pubKey;
         // Traitement des actions de l'utilisateur

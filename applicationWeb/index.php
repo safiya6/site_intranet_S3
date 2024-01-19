@@ -12,7 +12,7 @@ require_once "Models/Model.php";
 require_once "Controllers/Controller.php";
 
 //Liste des contrôleurs
-$controllers = ["connexion","page","RSA"];
+$controllers = ["connexion","page","add","update","delete"];
 //Nom du contrôleur par défaut
 $controller_default = "connexion";
 

@@ -25,25 +25,32 @@ class Controller_connexion extends Controller
                 $_SESSION["ide"] = (int)$_POST["ide"];
                  
                 $_SESSION["prenom"] = $donnee["prenom"];
+                $_SESSION["semestre"] = 1;
+                $_SESSION["niveau"]=1; 
 
                 if ($m->est_secretaire($_POST["ide"])) {
-                    $_SESSION["role"] = "secrétaire";
-                    header('Location: ?controller=page&action=rendre');
+                    $_SESSION["role"] = "secretaire";
+                    header('Location: ?controller=page&action=secretaire');
                     exit();
 
                 } elseif ($m->est_directeur($_POST["ide"])) {
                     $_SESSION["role"] = "directeur";
-                    header('Location: ?controller=page&action=rendre');
+                    header('Location: ?controller=page&action=directeur');
                     exit(); 
-                }  elseif ($m->est_chefdepartement($_POST["ide"])) {
+                }  elseif ($m->est_equipedirection($_POST["ide"])) {
+                    $_SESSION["role"] = "equipedirection";
+                    header('Location: ?controller=page&action=directeur');
+                    exit(); 
+                } 
+                 elseif ($m->est_chefdepartement($_POST["ide"])) {
                     $_SESSION["role"] = "chef de departement";
                    
-                    header('Location: ?controller=page&action=rendre');
+                    header('Location: ?controller=page&action=chefDept ');
                     exit();
                     
                 }else {
                     $_SESSION["role"] = "enseignant";
-                    header('Location: ?controller=page&action=rendre');
+                    header('Location: ?controller=page&action=enseignant');
                     exit();
                 }
 

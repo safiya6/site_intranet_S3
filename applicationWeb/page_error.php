@@ -1,5 +1,5 @@
 <?php
-require "Views/view_begin.php";?>
+require "Views/view_begin_visualisation.php";?>
 
 <h1> ERROR </h1>
 

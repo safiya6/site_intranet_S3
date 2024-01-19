@@ -1,5 +1,4 @@
-<?php require "view_begin.php" ;echo "probleme";
+<?php require "view_begin_visualisation.php" ;echo "probleme";
 session_start();
-$_SESSION["semestre"]=1;
-<script>graphiquePie("graphiqueC", <?php echo ; ?>);</script>
-<?php require "view_end.php"?>
+echo "controller par défault y'a surement un problème dans ton code";
+ require "view_end.php"?> 

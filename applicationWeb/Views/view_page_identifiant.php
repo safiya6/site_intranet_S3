@@ -1,50 +1,65 @@
 
-<?php require "view_begin.php";?>
+<?php require "view_begin_visualisation.php";?>
   
-<?php if (isset($_SESSION['prenom']) && isset($_SESSION['role'])): ?>
-
-    
-
-        <div class="graph-container" style="width: 600px; height: 600px;">
-        <h1> quotite par departement</h1>
-            <canvas width="100px" height="100px" id="graphiqueCercle"></canvas>
+<?php  if (isset($_SESSION['prenom']) && isset($_SESSION['role'])): ?>
+  
+  <div class= "form">  
+      <form action="?controller=page&action=recupSemestre" method="post">
+        <label for="semestre1">Semestre 1
+        <input type="radio" id="semestre1" name="semestre" value="1" <?= ($_SESSION['semestre'] == 1) ? 'checked' : ''; ?>>
+</label>
+        <label for="semestre2">Semestre 2
+        <input type="radio" id="semestre2" name="semestre" value="2" <?= ($_SESSION['semestre'] == 2) ? 'checked' : ''; ?>>
+        </label>
+        <label>
+        <div class="cote">
+        <input type="submit" value="Choisir">
         </div>
- 
-  <script>graphiqueDoughnut("graphiqueCercle", <?php echo $_SESSION["quotite"]; ?>,'quotite par departement');</script>
-  <div class="graph-container" style="width: 600px; height: 600px;">
-      <canvas width="100px" height="100px" id="graphiqueC"></canvas>
-  </div>
+</label>
+      </form>
+    </div>
+
+    <div class= "form">  
+      <form action="?controller=page&action=recupNiveau" method="post">
+        <label for="BUT1">BUT1
+        <input type="radio"  name="niveau" value="1" <?= ($_SESSION['niveau'] == 1) ? 'checked' : ''; ?>>
+</label>
+        <label for="BUT2">BUT 2
+        <input type="radio" name="niveau" value="2" <?= ($_SESSION['niveau'] == 2) ? 'checked' : ''; ?>>
+        </label>
+        <label for="BUT3">BUT 3
+        <input type="radio"  name="niveau" value="3" <?= ($_SESSION['niveau'] == 3) ? 'checked' : ''; ?>>
+        </label>
+        <label for="LP3">LP 3
+        <input type="radio"  name="niveau" value="4" <?= ($_SESSION['niveau'] == 4) ? 'checked' : ''; ?>>
+        </label>
+        <label>
+        <div class="cote">
+        <input type="submit" value="Choisir">
+        </div>
+</label>
+      </form>
+    </div>
+<div class="graph-container-parent">
+    
+   
+  <script>graphiqueDoughnut("graphiqueCercle", <?php echo $_SESSION["quotite"]; ?>,'quotite par departement','quotite par département');</script>
   
-  <script>graphiqueCamenbert("graphiqueC", <?php echo $_SESSION["pourcentage"]; ?>);</script>
+  <script>graphiqueCamenbert("graphiqueC1", <?php echo $_SESSION["enseigneDept"]; ?>,'catégorie agent pour votre département');</script>
+  <script>graphiqueCamenbert("graphiqueC", <?php echo $_SESSION["pourcentage"]; ?>,'pourcentage agent');</script>
+   <script>
+    var heureensData = <?php echo $_SESSION["heureens"]; ?>;
+   graphiqueCamenbert2label("graphiqueC2", heureensData ,'heures enseignées VS heures libres',"heure enseignées","heures libres");</script>
 
-  <div class="graph-container" style="width: 600px; height: 600px;">
-  <h1> service complémentaire vs référentiel </h1>
-      <canvas  id="graphiqueB"></canvas>
-  </div>
-  <script>graphiqueBar("graphiqueB", <?php echo $_SESSION["S_vs_C"]; ?>);</script>
 
-  <div class="graph-container" style="width: 600px; height: 600px;">
-  <h1> Heure par discipline </h1>
-  <form action="?controller=page&action=recupSemestre" method="post">
-    <label for="semestre1">Semestre 1</label>
-    <input type="radio" id="semestre1" name="semestre" value="1" <?= ($_SESSION['semestre'] == 1) ? 'checked' : ''; ?>>
+  <script>graphiqueBar("graphiqueB", <?php echo $_SESSION["S_vs_C"]; ?> ,'service statutaire','service complémentaire','service statutaire VS complémentaire  ');</script>
 
-    <label for="semestre2">Semestre 2</label>
-    <input type="radio" id="semestre2" name="semestre" value="2" <?= ($_SESSION['semestre'] == 2) ? 'checked' : ''; ?>>
+  
+  <script>graphiqueBarresHorizontales("graphiqueBH", <?php echo $_SESSION["HeurediscIUT"] ?>,"Discipline par département selon la formation ");</script>
 
-    <input type="submit" value="Choisir">
-</form>
-      <canvas  id="graphiqueBH"></canvas>
-  </div>
-  <?php var_dump($_SESSION)?>
-  <script>graphiqueBarresHorizontales("graphiqueBH", <?php echo $_SESSION["HeurediscIUT"]; ?>);</script>
-
-  <div class="graph-container" style="width: 600px; height: 600px;">
-  <h1> heure par discipline</h1>
-      <canvas  id="graphiqueBH2"></canvas>
-  </div>
-  <script>graphiqueBarresHorizontales("graphiqueBH2", <?php echo $_SESSION["HeurediscIUTDept"]; ?>);</script>
-
+  
+  <script>graphiqueBarresHorizontales("graphiqueBH2", <?php echo $_SESSION["HeurediscIUTDept"]?>,"Discipline pour le departement <?= $_SESSION['departement']?> semestre:<?= $_SESSION['semestre']?>, niveau: <?= $_SESSION['niveau']?>");</script>
+</div>
   <?php else: ?>
   <p>Vous n'êtes pas connecté</p>
 <?php endif; ?>

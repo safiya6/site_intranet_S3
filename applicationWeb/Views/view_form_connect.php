@@ -1,8 +1,6 @@
-<?php require "view_begin.php" ?>
+<?php require "view_begin_connexion.php" ?>
 
-<?php if (isset($error_message) && !empty($error_message)): ?>
-        <p style="color: red;"><?php echo $error_message; ?></p>
-    <?php endif; ?>
+
 
 <div id="pagelogin">
             <p><img id="imgIutv" src="Content/iutv.jpg"></p>
@@ -14,8 +12,11 @@
                     <form id="form" action="" method="post">
                         <p>
                             <img class="imgInput" src="Content/personne.svg">
-                            <input type="number" name="ide" placeholder="Identifiant">
+                            <input style" -moz-appearance:textfield" type="number" name="ide" placeholder="Identifiant">
                         </p>
+                        <?php if (isset($error_message) && !empty($error_message)): ?>
+                           <p style="color: red;"><?php echo $error_message; ?></p>
+                        <?php endif; ?>
                         <p> <img class="imgInput" src="Content/mdp.svg">
                             <input type="password" name="mdp" placeholder="Mot de passe"></p>
                         <p> <input type="submit" id="connexion" value="Se connecter"> </p>
