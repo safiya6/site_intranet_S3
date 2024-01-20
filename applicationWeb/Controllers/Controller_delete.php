@@ -13,8 +13,8 @@ class Controller_delete extends Controller {
 
     // Action pour supprimer un enseignant en fonction du POST
     public function action_deleteEnseignant() {
-        if (!empty($_POST['id_personne'])) {
-            $infos = $_POST['id_personne'];
+        if (!empty(e($_POST['id_personne']))) {
+            $infos = e($_POST['id_personne']);
 
             $m = Model::getModel();
 

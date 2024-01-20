@@ -8,7 +8,7 @@ class Controller_update extends Controller {
         $data = [
             "annees"       => $m->getAnnees(),
             "semestres"    => $m->getSemestres(),
-            "niveaux"      => [1 => "BUT 1", 2 => "BUT 2", 3 => "BUT 3", 4 => "Licence 1", 5 => "Licence 2", 6 => "Licence 3"],
+            "niveaux"      => [1 => "BUT 1", 2 => "BUT 2", 3 => "BUT 3", 4 => "Licence 3"],
             "formations"   => $m->getFormations(),
             "disciplines"  => $m->getDisciplines(),
             "departements" => $m->getDepartements()
@@ -19,11 +19,11 @@ class Controller_update extends Controller {
     // Action pour choisir le besoin en heure à mettre à jour
     public function action_choiceUpdateBesoinHeure() {
         $infos = [
-            "aa"             => $_POST["aa"],
-            "s"              => $_POST["s"],
-            "id_formation"   => $_POST["id_formation"],
-            "id_discipline"  => $_POST["id_discipline"],
-            "id_departement" => $_POST["id_departement"]
+            "aa"             => e($_POST["aa"]),
+            "s"              => e($_POST["s"]),
+            "id_formation"   => e($_POST["id_formation"]),
+            "id_discipline"  => e($_POST["id_discipline"]),
+            "id_departement" => e($_POST["id_departement"])
         ];
         $m = Model::getModel();
         $besoin = $m->getBesoinHeure($infos);
@@ -43,14 +43,14 @@ class Controller_update extends Controller {
     // Action pour effectuer la mise à jour du besoin en heure
     public function action_updateBesoinHeure() {
         // Vérification de la présence et de la validité des données POST
-        if (isset($_POST['besoin_heure']) and ! preg_match("/^ *$/", $_POST["besoin_heure"])) {
+        if (e(isset($_POST['besoin_heure'])) and ! preg_match("/^ *$/", e($_POST["besoin_heure"]))) {
             $infos = [
-                "besoin_heure"   => $_POST["besoin_heure"],
-                "aa"             => $_POST["aa"],
-                "s"              => $_POST["s"],
-                "id_formation"   => $_POST["id_formation"],
-                "id_discipline"  => $_POST["id_discipline"],
-                "id_departement" => $_POST["id_departement"]
+                "besoin_heure"   => e($_POST["besoin_heure"]),
+                "aa"             => e($_POST["aa"]),
+                "s"              => e($_POST["s"]),
+                "id_formation"   => e($_POST["id_formation"]),
+                "id_discipline"  => e($_POST["id_discipline"]),
+                "id_departement" => e($_POST["id_departement"])
             ];
             $m = Model::getModel();
             $update = $m->updateBesoinHeure($infos);

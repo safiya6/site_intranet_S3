@@ -65,10 +65,10 @@ class Controller_page extends Controller
 
     // Action pour récupérer le semestre sélectionné
     public function action_recupSemestre(){
-        if (!isset($_POST["semestre"]) && !isset($_POST["niveau"])){
+        if (!e(isset($_POST["semestre"])) && !e(isset($_POST["niveau"]))){
             $_SESSION["semestre"] = 1;
         } else {
-           $_SESSION["semestre"] = $_POST["semestre"] ;
+           $_SESSION["semestre"] = e($_POST["semestre"]) ;
         } 
         // Redirection en fonction du rôle de l'utilisateur
         if ($_SESSION["role"] == "directeur") {
@@ -86,10 +86,10 @@ class Controller_page extends Controller
 
     // Action pour récupérer le niveau sélectionné
     public function action_recupNiveau(){
-        if (!isset($_POST["niveau"])){
+        if (!e(isset($_POST["niveau"]))){
             $_SESSION["niveau"] = 1;
         } else {
-           $_SESSION["niveau"] = $_POST["niveau"];
+           $_SESSION["niveau"] = e($_POST["niveau"]);
         } 
         // Redirection en fonction du rôle de l'utilisateur
         if ($_SESSION["role"] == "directeur") {

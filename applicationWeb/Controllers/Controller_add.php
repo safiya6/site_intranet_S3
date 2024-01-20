@@ -16,16 +16,16 @@ class Controller_add extends Controller {
     //  ajoute un enseignant en fonction des données reçues dans le POST
     public function action_addEnseignant() {
         // Vérification de la présence des informations nécessaires dans POST
-        if (isset($_POST['nom']) AND ! preg_match("/^ *$/", $_POST["nom"]) AND
-            isset($_POST['prenom']) AND ! preg_match("/^ *$/", $_POST["prenom"]) AND
-            isset($_POST['email']) AND ! preg_match("/^ *$/", $_POST["email"])
+        if (e(isset($_POST['nom'])) AND ! preg_match("/^ *$/", e($_POST["nom"])) AND
+            e(isset($_POST['prenom'])) AND ! preg_match("/^ *$/", e($_POST["prenom"])) AND
+            e(isset($_POST['email'])) AND ! preg_match("/^ *$/", e($_POST["email"]))
         ) {
             $infos = [];
-            $noms = ['nom', 'prenom', 'email', 'id_discipline', 'id_categorie', 'scr', 'aa'];
+            $noms = ['nom', 'prenom', 'email', 'id_discipline', 'id_categorie', 'aa'];
 
             foreach ($noms as $v) {
-                if (isset($_POST[$v]) and ! preg_match("/^ *$/", $_POST[$v])) {
-                    $infos[$v] = $_POST[$v];
+                if (e(isset($_POST[$v])) and ! preg_match("/^ *$/", e($_POST[$v]))) {
+                    $infos[$v] = e($_POST[$v]);
                 } else {
                     $infos[$v] = null;
                 }
