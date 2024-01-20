@@ -21,10 +21,10 @@ class Controller_connexion extends Controller
         } 
 
         // Si le formulaire est soumis
-        if (isset($_POST["ide"]) && isset($_POST["mdp"])) {
+        if (e(isset($_POST["ide"])) && e(isset($_POST["mdp"]))) {
             
-            if ($m->est_connecte($_POST["ide"], $_POST["mdp"])) {
-                $donnee = $m->recuperer_donnee($_POST["ide"]);
+            if ($m->est_connecte(e($_POST["ide"]), e($_POST["mdp"]))) {
+                $donnee = $m->recuperer_donnee(e($_POST["ide"]));
 
                 // Initialise les variables de session
                 $_SESSION["ide"] = (int)$_POST["ide"];
@@ -33,19 +33,19 @@ class Controller_connexion extends Controller
                 $_SESSION["niveau"] = 1; 
 
                 // Détermine le rôle de l'utilisateur et redirige en conséquence
-                if ($m->est_secretaire($_POST["ide"])) {
+                if ($m->est_secretaire(e($_POST["ide"]))) {
                     $_SESSION["role"] = "secretaire";
                     header('Location: ?controller=page&action=secretaire');
                     exit();
-                } elseif ($m->est_directeur($_POST["ide"])) {
+                } elseif ($m->est_directeur(e($_POST["ide"]))) {
                     $_SESSION["role"] = "directeur";
                     header('Location: ?controller=page&action=directeur');
                     exit(); 
-                } elseif ($m->est_equipedirection($_POST["ide"])) {
+                } elseif ($m->est_equipedirection(e($_POST["ide"]))) {
                     $_SESSION["role"] = "equipedirection";
                     header('Location: ?controller=page&action=directeur');
                     exit(); 
-                } elseif ($m->est_chefdepartement($_POST["ide"])) {
+                } elseif ($m->est_chefdepartement(e($_POST["ide"]))) {
                     $_SESSION["role"] = "chef de departement";
                     header('Location: ?controller=page&action=chefDept');
                     exit();
