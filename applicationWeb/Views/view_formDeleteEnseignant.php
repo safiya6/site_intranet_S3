@@ -19,7 +19,7 @@
 </form>
 </div>
 <?php else: ?>
-  <p>Vous n'êtes pas connecté</p>
+  <p>Vous n'Ãªtes pas connectÃ©</p>
 <?php endif; ?>
 
 <?php require "view_end.php"; ?>

@@ -28,31 +28,35 @@
                 <button id="ajout"  type="submit">Visualisation</button>
                 </form>
                 </li>
-                <?php if ($_SESSION["role"] != "enseignant" && $_SESSION["role"] != "secrétaire") : ?>
-                <li class="link">
-                <form action="?controller=add" method="post">
-                <button  id="ajout" type="submit">Ajout</button>
-                </form>
-                </li>   
-                <?php endif?>
                 <?php if ($_SESSION["role"] == "directeur"||  $_SESSION["role"] == "equipedirection") : ?>
                  <li class="link">
                 <form action="?controller=delete" method="post">
                 <button  id="ajout" type="submit">supprimer un enseignant</button>
                 </form>
+                </li> 
+                <li class="link">
+                <form action="?controller=add" method="post">
+                <button  id="ajout" type="submit">Ajout</button>
+                </form>
                 </li>   
+                <li class="link">
+                <form action="?controller=add&action=formAddCours" method="post">
+                <button  id="ajout" type="submit">Ajouter Cours</button>
+                </form>
+                </li>
+                 <?php endif?> 
+                <?php if ($_SESSION["role"] == "directeur"||  $_SESSION["role"] == "equipedirection" ||  $_SESSION["role"] == "chef de departement" ) : ?>
                 <li class="link">
                 <form action="?controller=update" method="post">
                 <button  id="ajout" type="submit">Modifier Besoin en Heure</button>
                 </form>
                 </li>
                 <?php endif?>
-                <?php if ($_SESSION["role"] != "secrétaire"):?>
-                <li class="link"><a href="#">Mes Cours</a></li>
-                <?php endif ?>
-                <li class="link"><a href="#">Mon Profil</a></li>
-            </ul>
-            <button id="connexionButton">Connexion</button>
-            <button id="modeSwitch">Light Mode</button>
+            <li class="link">
+            <form action="?controller=connexion" method="post">
+            <button type="submit" id="ajout">Déconnexion</button>
+        </form>
+                </li>
+                </ul>
         </div>
     </header>
