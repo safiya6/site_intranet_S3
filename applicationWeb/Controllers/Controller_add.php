@@ -60,6 +60,7 @@ class Controller_add extends Controller {
     }
 
     
+    // Affiche le formulaire d'ajout de cours avec les données nécessaires
     public function action_formAddCours() {
         $m = Model::getModel();
         $disciplines = $m->disciplineBesoinHeure();
@@ -79,6 +80,7 @@ class Controller_add extends Controller {
         }
     }
 
+    // Affiche le formulaire de choix d'enseignant en fonction de la discipline sélectionnée
     public function action_formChoiceEnseignant() {
         $m = Model::getModel();
         $disciplines = $m->disciplineBesoinHeure();
@@ -88,6 +90,7 @@ class Controller_add extends Controller {
         $this->render('addCours', $data);
     }
 
+    // Ajoute un cours en fonction des données reçues dans le POST
     public function action_addCours() {
         $m = Model::getModel();
         $disciplines = $m->disciplineBesoinHeure();
@@ -99,6 +102,7 @@ class Controller_add extends Controller {
                 break;
             }
         }
+        // Vérification si le nombre d'heures demandées ne dépasse pas le nombre d'heures disponibles pour l'enseignant
         if (e($_POST['nbHeure']) > $enseignant['nbHeure']) {
             $data = [
                 'title' => "Trop d'heure",
@@ -115,6 +119,7 @@ class Controller_add extends Controller {
                       "id_formation"  => $discipline['id_formation'],
                       "id_departement" => $discipline['id_departement'],
                       "besoin_heure"   => $discipline['besoin_heure']- e($_POST['nbHeure'])];
+            // Ajout du cours et mise à jour des heures nécessaires
             if ($infos['besoin_heure'] == 0) {
                 $rst = ($m->addEnseigne($infos) && $m->delBesoinHeure($infos));
             }
@@ -132,7 +137,7 @@ class Controller_add extends Controller {
             else {
                 $data = [
                     'title' => "Echec",
-                    'message' => "L'ajout n'a pas pu être ajouté, réésayez !",
+                    'message' => "L'ajout n'a pas pu être ajouté, réessayez !",
                 ];
                 $this->render('message', $data);
             }
